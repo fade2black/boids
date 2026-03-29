@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*~
+
+# Build directories
+build/
+Build/
+cmake-build-*/
+dist/
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+
+# IDE
+.idea/
+.vscode/
+*.xcworkspace/
