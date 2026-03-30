@@ -13,6 +13,14 @@ Vector2D Agent::getVelocity() const {
     return m_velocity;
 }
 
+void Agent::setLocation(const Vector2D& location) {
+    m_location = location;
+}   
+
+void Agent::setVelocity(const Vector2D& velocity) {
+    m_velocity = velocity;
+}
+
 void Agent::update() {
-    // Placeholder for agent update logic
+   m_location = m_location + m_velocity;
 }

@@ -5,10 +5,11 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define CIRCLE_RADIUS 5.f
+#define CIRCLE_RADIUS 3.f
+#define SWARM_SIZE 10
 
 int main() {
-    Swarm swarm(10, WIDTH, HEIGHT);
+    Swarm swarm(SWARM_SIZE, WIDTH, HEIGHT);
     std::vector<sf::CircleShape> shapes;
     
     for (int i = 0; i < swarm.getSize(); ++i) {
@@ -31,9 +32,12 @@ int main() {
             }
         }
 
-        // for (auto &agent : swarm.getAgents()) {
-        //     agent.update(swarm.getAgents());
-        // }
+        swarm.update();
+    
+        for(int i = 0; i < swarm.getSize(); ++i) {
+            Agent agent = swarm.getAgent(i);
+            shapes[i].setPosition(sf::Vector2f(agent.getLocation().getX(), agent.getLocation().getY()));
+        }
 
         window.clear();
         for (const auto &shape : shapes) {

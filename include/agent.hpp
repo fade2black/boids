@@ -12,6 +12,8 @@ class Agent{
     Agent(const Vector2D& location, const Vector2D& velocity);
     Vector2D getLocation() const;
     Vector2D  getVelocity() const;
+    void setLocation(const Vector2D& location);
+    void setVelocity(const Vector2D& velocity);
 
     void update();
 };

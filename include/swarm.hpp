@@ -6,9 +6,10 @@
 class Swarm {
 private:
     std::vector<Agent> m_agents;
-
     int m_width;
     int m_height;
+
+    void keepWithinBounds(Agent& agent);
     
 public:
     Swarm(int nboids,int width, int height);
