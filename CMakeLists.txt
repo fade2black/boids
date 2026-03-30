@@ -8,6 +8,9 @@ find_package(SFML 3 REQUIRED COMPONENTS Graphics Window System Audio REQUIRED)
 
 set(SOURCES
   src/main.cpp
+  src/agent.cpp
+  src/swarm.cpp
+  src/vector2d.cpp
   )
 
 add_executable( ${PROJECT_NAME} ${SOURCES})
