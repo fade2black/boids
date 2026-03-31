@@ -2,10 +2,10 @@
 #include <vector>
 
 const float MARGIN = 15.0f;
-const float SPEED_FACTOR = 0.05f;
+const float SPEED_FACTOR = 0.01f;
 const float SEPARATION_RANGE = 50.0f;   // Distance to trigger Separation
 const float SEPARATION_WEIGHT = 0.05f;  // Strong push away from overlap
-const float COHESION_WEIGHT = 0.00005f; // Weak pull to center
+const float COHESION_WEIGHT = 0.00001f; // Weak pull to center
 const float ALIGNMENT_WEIGHT  = 0.001f;  // Match neighbor direction
 const float MAX_SPEED = 3.0f;   // Limit top speed
 const float MIN_SPEED = 1.0f;   // Prevent stopping

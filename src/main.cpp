@@ -6,7 +6,7 @@
 #include "SFML/Graphics.hpp"
 
 #define CIRCLE_RADIUS 7.f
-#define SWARM_SIZE 5
+#define SWARM_SIZE 10
 
 #include <vector>
 
