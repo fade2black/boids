@@ -10,7 +10,6 @@ set(SOURCES
   src/main.cpp
   src/agent.cpp
   src/swarm.cpp
-  src/vector2d.cpp
   )
 
 add_executable( ${PROJECT_NAME} ${SOURCES})

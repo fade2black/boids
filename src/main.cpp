@@ -1,30 +1,35 @@
 #include <iostream>
 #include <vector>
+#include <random>
+#include <cmath>
 #include "swarm.hpp"
 #include "SFML/Graphics.hpp"
 
-#define WIDTH 800
-#define HEIGHT 600
-#define CIRCLE_RADIUS 3.f
-#define SWARM_SIZE 10
+#define CIRCLE_RADIUS 7.f
+#define SWARM_SIZE 5
+
+#include <vector>
+
+const int WIDTH = 1000;
+const int HEIGHT = 800;
 
 int main() {
     Swarm swarm(SWARM_SIZE, WIDTH, HEIGHT);
     std::vector<sf::CircleShape> shapes;
     
+    // Initialize shapes for each agent
     for (int i = 0; i < swarm.getSize(); ++i) {
         Agent agent = swarm.getAgent(i);
-        std::cout << "Agent " << i << ": Location(" << agent.getLocation().getX() << ", " << agent.getLocation().getY() 
-                  << ") Velocity(" << agent.getVelocity().getX() << ", " << agent.getVelocity().getY()   << ")\n";
+        sf::CircleShape shape(CIRCLE_RADIUS, 3);
 
-        sf::CircleShape shape(CIRCLE_RADIUS);
         shape.setFillColor(sf::Color::Magenta);
-        shape.setPosition(sf::Vector2f(agent.getLocation().getX(), agent.getLocation().getY()));
+        shape.setPosition(sf::Vector2f(agent.getX(), agent.getY()));
         shapes.push_back(shape);
     }
 
-
+    // Create the window
     sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}), "Boids!");
+    // Start simulation loop
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>()) {
@@ -32,11 +37,14 @@ int main() {
             }
         }
 
-        swarm.update();
+        swarm.update();        
     
-        for(int i = 0; i < swarm.getSize(); ++i) {
+        for(int i = 0; i < swarm.getSize(); ++i)  {
             Agent agent = swarm.getAgent(i);
-            shapes[i].setPosition(sf::Vector2f(agent.getLocation().getX(), agent.getLocation().getY()));
+
+            sf::Angle angle = sf::radians(std::atan2(agent.getVy(), agent.getVx()));
+            shapes[i].setRotation(angle + sf::radians(M_PI_2)); // Rotate the shape to point in the direction of velocity
+            shapes[i].setPosition(sf::Vector2f(agent.getX(), agent.getY()));
         }
 
         window.clear();
